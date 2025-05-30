@@ -1,0 +1,38 @@
+﻿@model ClinicaWeb.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Iniciar Sesión";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow-sm p-4" style="width: 100%; max-width: 400px;">
+        <div class="text-center mb-3">
+            <h3 class="fw-bold">Clínica Salud</h3>
+            <p class="text-muted">Ingrese sus credenciales para acceder al sistema</p>
+        </div>
+
+        <form asp-action="Login" method="post">
+            <div class="mb-3">
+                <label asp-for="Nombre_Usuario" class="form-label">Nombre de usuario</label>
+                <input asp-for="Nombre_Usuario" class="form-control" placeholder="Usuario" />
+                <span asp-validation-for="Nombre_Usuario" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">Contraseña</label>
+                <input asp-for="Password" type="password" class="form-control" placeholder="••••••••" />
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+
+
+            <button type="submit" class="btn btn-success w-100">Iniciar sesión</button>
+        </form>
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger mt-3">
+                @Html.ValidationSummary()
+            </div>
+        }
+    </div>
+</div>

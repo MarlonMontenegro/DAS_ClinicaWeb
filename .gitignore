@@ -1,0 +1,54 @@
+# Archivos de Visual Studio
+.vs/
+*.user
+*.suo
+
+# Archivos de compilación
+bin/
+obj/
+out/
+
+# Archivos de publicación
+publish/
+*.publish.xml
+
+# Configuración de Rider y JetBrains
+.idea/
+
+# Paquetes NuGet
+*.nupkg
+packages/
+*.snupkg
+
+# Archivos generados por la compilación
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+
+# Archivos temporales del sistema
+*.tmp
+*.bak
+*.swp
+*.DS_Store
+Thumbs.db
+
+# Configuración de usuario local
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.Secret.json
+
+# Archivos generados de Entity Framework
+Migrations/
+
+# Archivos de entorno
+.env
+
+# Ignorar librerías frontend si se restauran desde LibMan o CDN
+wwwroot/lib/
+
+# Ignorar todos los .map, .min.js y .min.css generados
+*.map
+*.min.js
+*.min.css

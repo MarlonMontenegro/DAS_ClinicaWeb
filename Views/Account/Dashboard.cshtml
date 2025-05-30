@@ -1,0 +1,90 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    var rol = ViewBag.Rol as string;
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h2>Bienvenido al Panel de Control</h2>
+        <h4 class="text-muted">Rol: <span class="badge bg-primary">@rol</span></h4>
+    </div>
+
+    @if (rol == "Medico")
+    {
+        <div class="row justify-content-center">
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Mis Consultas</h5>
+                        <p class="card-text text-muted">Revisar diagnósticos, tratamientos y notas clínicas.</p>
+                        <a href="/Consultas/Index" class="btn btn-outline-primary w-100">Ir a Consultas</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Agenda Médica</h5>
+                        <p class="card-text text-muted">Ver citas programadas con pacientes.</p>
+                        <a href="/Citas/Medico" class="btn btn-outline-success w-100">Ver Agenda</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (rol == "Recepcionista")
+    {
+        <div class="row justify-content-center">
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Registrar Citas</h5>
+                        <p class="card-text text-muted">Agendar nuevas citas para los pacientes.</p>
+                        <a href="/Citas/Create" class="btn btn-outline-warning w-100">Registrar Cita</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Lista de Pacientes</h5>
+                        <p class="card-text text-muted">Acceder a la información de los pacientes registrados.</p>
+                        <a href="/Pacientes/Index" class="btn btn-outline-info w-100">Ver Pacientes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (rol == "Administrador")
+    {
+        <div class="row justify-content-center">
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Gestión de Usuarios</h5>
+                        <p class="card-text text-muted">Crear, editar o eliminar cuentas de usuario.</p>
+                        <a href="/Usuarios/Index" class="btn btn-outline-dark w-100">Administrar Usuarios</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Configuraciones</h5>
+                        <p class="card-text text-muted">Ajustes generales del sistema clínico.</p>
+                        <a href="/Configuraciones/Index" class="btn btn-outline-secondary w-100">Ir a Configuración</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger text-center">
+            Rol no autorizado.
+        </div>
+    }
+</div>
