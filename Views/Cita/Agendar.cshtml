@@ -1,0 +1,31 @@
+﻿@model ClinicaWeb.Models.Cita
+
+@{
+    ViewBag.Title = "Agendar Cita";
+}
+
+<h2>Agendar Cita</h2>
+
+<form asp-action="Agendar" method="post">
+    <div class="form-group">
+        <label asp-for="IdPaciente" class="control-label">Paciente</label>
+        <select asp-for="IdPaciente" asp-items="ViewBag.Pacientes" class="form-control"></select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="IdMedico" class="control-label">Médico</label>
+        <select asp-for="IdMedico" asp-items="ViewBag.Medicos" class="form-control"></select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FechaHora" class="control-label">Fecha y hora</label>
+        <input asp-for="FechaHora" type="datetime-local" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MotivoConsulta" class="control-label">Motivo de la consulta</label>
+        <textarea asp-for="MotivoConsulta" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Agendar</button>
+</form>
