@@ -41,7 +41,7 @@ namespace ClinicaWeb.Controllers
             {
                 _context.Citas.Add(cita);
                 _context.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Dashboard", "Home");
             }
 
             ViewBag.Pacientes = new SelectList(_context.Pacientes
