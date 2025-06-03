@@ -58,6 +58,16 @@ namespace ClinicaWeb.Controllers
 
             return View(cita);
         }
+        // POST: Cita/lista
+        public IActionResult Lista()
+        {
+            var citas = _context.Citas
+                .Include(c => c.IdPacienteNavigation)
+                .Include(c => c.IdMedicoNavigation)
+                .ToList();
+
+            return View(citas);
+        }
     }
 }
 
