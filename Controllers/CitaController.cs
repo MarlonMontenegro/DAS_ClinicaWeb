@@ -17,16 +17,18 @@ namespace ClinicaWeb.Controllers
         // GET: Cita/Agendar
         public IActionResult Agendar()
         {
+            ViewBag.Rol = "Recepcionista"; 
+
             ViewBag.Pacientes = new SelectList(_context.Pacientes
-                .Select(p => new { p.Id, NombreCompleto = p.Nombre + " " + p.Apellido }),
+                    .Select(p => new { p.Id, NombreCompleto = p.Nombre + " " + p.Apellido }),
                 "Id", "NombreCompleto");
 
             ViewBag.Medicos = new SelectList(_context.Medicos
-                .Include(m => m.IdEspecialidadNavigation)
-                .Select(m => new {
-                    m.Id,
-                    NombreCompleto = m.Nombre + " " + m.Apellido + " - " + m.IdEspecialidadNavigation.NombreEspecialidad
-                }),
+                    .Include(m => m.IdEspecialidadNavigation)
+                    .Select(m => new {
+                        m.Id,
+                        NombreCompleto = m.Nombre + " " + m.Apellido + " - " + m.IdEspecialidadNavigation.NombreEspecialidad
+                    }),
                 "Id", "NombreCompleto");
 
             return View();
@@ -61,6 +63,7 @@ namespace ClinicaWeb.Controllers
         // POST: Cita/lista
         public IActionResult Lista()
         {
+            ViewBag.Rol = "Recepcionista";
             var citas = _context.Citas
                 .Include(c => c.IdPacienteNavigation)
                 .Include(c => c.IdMedicoNavigation)
