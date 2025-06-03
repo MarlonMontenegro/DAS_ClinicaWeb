@@ -59,6 +59,10 @@ namespace ClinicaWeb.Controllers
             ViewBag.Rol = rol;
             return View();
         }
-
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();          
+            return RedirectToAction("Login", "Account");
+        }
     }
 }

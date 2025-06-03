@@ -1,0 +1,62 @@
+﻿@model ClinicaWeb.ViewModels.NuevoPacienteVM
+
+@{
+    ViewData["Title"] = "Registrar Paciente";
+}
+
+<h2 class="mb-4">Registrar Nuevo Paciente</h2>
+
+<form asp-action="Crear" method="post" class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="Nombre" class="form-label">Nombre</label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="Apellido" class="form-label">Apellido</label>
+        <input asp-for="Apellido" class="form-control" />
+        <span asp-validation-for="Apellido" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="Dui" class="form-label">DUI</label>
+        <input asp-for="Dui" class="form-control" />
+        <span asp-validation-for="Dui" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="FechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+        <input asp-for="FechaNacimiento" type="date" class="form-control" />
+        <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="CorreoElectronico" class="form-label">Correo Electrónico</label>
+        <input asp-for="CorreoElectronico" class="form-control" />
+        <span asp-validation-for="CorreoElectronico" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="Telefono" class="form-label">Teléfono</label>
+        <input asp-for="Telefono" class="form-control" />
+        <span asp-validation-for="Telefono" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-12">
+        <label asp-for="Direccion" class="form-label">Dirección</label>
+        <textarea asp-for="Direccion" class="form-control"></textarea>
+        <span asp-validation-for="Direccion" class="text-danger"></span>
+    </div>
+
+    <div class="col-12 mt-4">
+        <button type="submit" class="btn btn-primary">Registrar Paciente</button>
+        <a href="/Account/Dashboard?rol=Recepcionista" class="btn btn-secondary ms-2">Cancelar</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

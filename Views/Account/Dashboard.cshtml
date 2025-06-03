@@ -55,6 +55,16 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Ingresar PAciente</h5>
+                        <p class="card-text text-muted">Añade un nuevo paciente al sistema medico.</p>
+                        <a href="/Paciente/Crear" class="btn btn-outline-primary w-100">Registrar Paciente</a>
+                    </div>
+                </div>
+            </div>
         </div>
     }
     else if (rol == "Administrador")
@@ -65,7 +75,7 @@
                     <div class="card-body text-center">
                         <h5 class="card-title">Gestión de Usuarios</h5>
                         <p class="card-text text-muted">Crear, editar o eliminar cuentas de usuario.</p>
-                        <a href="/Usuarios/Index" class="btn btn-outline-dark w-100">Administrar Usuarios</a>
+                        <a href="/Admin/Lista" class="btn btn-outline-dark w-100">Administrar Usuarios</a>
                     </div>
                 </div>
             </div>
@@ -75,7 +85,7 @@
                     <div class="card-body text-center">
                         <h5 class="card-title">Configuraciones</h5>
                         <p class="card-text text-muted">Ajustes generales del sistema clínico.</p>
-                        <a href="/Configuraciones/Index" class="btn btn-outline-secondary w-100">Ir a Configuración</a>
+                        <a href="/Admin/Configuracion" class="btn btn-outline-secondary w-100">Ir a Configuración</a>
                     </div>
                 </div>
             </div>
@@ -87,4 +97,11 @@
             Rol no autorizado.
         </div>
     }
+    <div class="text-center mt-4">
+        <form asp-action="Logout" asp-controller="Account" method="post">
+            <button type="submit" class="btn btn-danger">
+                <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+            </button>
+        </form>
+    </div>
 </div>

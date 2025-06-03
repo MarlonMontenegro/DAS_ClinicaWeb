@@ -1,0 +1,83 @@
+﻿@model ClinicaWeb.ViewModels.NuevoUsuarioVM
+
+@{
+    ViewData["Title"] = "Configuración – Añadir Usuario";
+}
+
+<h2 class="mb-4">Configuración – Registrar Nuevo Usuario</h2>
+
+<form asp-action="CrearUsuario" method="post" class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="Nombre" class="form-label">Nombre</label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="Apellido" class="form-label">Apellido</label>
+        <input asp-for="Apellido" class="form-control" />
+        <span asp-validation-for="Apellido" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="NombreUsuario" class="form-label">Nombre de Usuario</label>
+        <input asp-for="NombreUsuario" class="form-control" />
+        <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="Contrasena" class="form-label">Contraseña</label>
+        <input asp-for="Contrasena" type="password" class="form-control" />
+        <span asp-validation-for="Contrasena" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="CorreoElectronico" class="form-label">Correo Electrónico</label>
+        <input asp-for="CorreoElectronico" class="form-control" />
+        <span asp-validation-for="CorreoElectronico" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="Rol" class="form-label">Rol</label>
+        <select asp-for="Rol" class="form-select" asp-items="Html.GetEnumSelectList<ClinicaWeb.ViewModels.TipoRol>()" id="rolSelect"></select>
+        <span asp-validation-for="Rol" class="text-danger"></span>
+    </div>
+
+    <!-- Campos adicionales para Médico -->
+    <div id="medicoFields" class="row" style="display:none;">
+        <div class="col-md-6 mt-3">
+            <label asp-for="Dui" class="form-label">DUI</label>
+            <input asp-for="Dui" class="form-control" />
+            <span asp-validation-for="Dui" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 mt-3">
+            <label asp-for="IdEspecialidad" class="form-label">Especialidad</label>
+            <select asp-for="IdEspecialidad" class="form-select" asp-items="ViewBag.Especialidades"></select>
+            <span asp-validation-for="IdEspecialidad" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="col-12 mt-4">
+        <button type="submit" class="btn btn-primary">Registrar</button>
+        <a href="/Account/Dashboard?rol=Administrador" class="btn btn-secondary ms-2">Cancelar</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        const rolSelect = document.getElementById('rolSelect');
+        const medicoFields = document.getElementById('medicoFields');
+
+        function toggleMedicoFields() {
+            
+            const selectedText = rolSelect.options[rolSelect.selectedIndex].text.trim();
+            medicoFields.style.display = selectedText === 'Medico' ? 'flex' : 'none';
+        }
+
+        rolSelect.addEventListener('change', toggleMedicoFields);
+        document.addEventListener('DOMContentLoaded', toggleMedicoFields);
+    </script>
+}

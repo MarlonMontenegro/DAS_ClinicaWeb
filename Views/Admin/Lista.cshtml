@@ -1,0 +1,142 @@
+﻿@model ClinicaWeb.ViewModels.UsuariosAgrupadosVM
+
+@{
+    ViewData["Title"] = "Lista de Usuarios";
+}
+
+<h2 class="mb-4">Usuarios Registrados</h2>
+<a href="/Account/Dashboard?rol=Administrador" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Atrás</a>
+
+<!-- Administradores -->
+<h4>Administradores</h4>
+<table class="table table-bordered table-striped mb-5">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Usuario</th>
+            <th>Correo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model.Administradores)
+        {
+            <tr>
+                <td>@u.IdUsuario</td>
+                <td>@u.Nombre</td>
+                <td>@u.Apellido</td>
+                <td>@u.NombreUsuario</td>
+                <td>@u.CorreoElectronico</td>
+                <td>
+                    <form asp-action="EliminarUsuario" asp-controller="Admin" asp-route-id="@u.IdUsuario" method="post" onsubmit="return confirm('¿Eliminar este usuario?');">
+                        <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Recepcionistas -->
+<h4>Recepcionistas</h4>
+<table class="table table-bordered table-striped mb-5">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Usuario</th>
+            <th>Correo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model.Recepcionistas)
+        {
+            <tr>
+                <td>@u.IdUsuario</td>
+                <td>@u.Nombre</td>
+                <td>@u.Apellido</td>
+                <td>@u.NombreUsuario</td>
+                <td>@u.CorreoElectronico</td>
+                <td>
+                    <form asp-action="EliminarUsuario" asp-controller="Admin" asp-route-id="@u.IdUsuario" method="post" onsubmit="return confirm('¿Eliminar este usuario?');">
+                        <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Médicos -->
+<h4>Médicos</h4>
+<table class="table table-bordered table-striped mb-5">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Especialidad</th>
+            <th>DUI</th>
+            <th>Correo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model.Medicos)
+        {
+            <tr>
+                <td>@m.Id</td>
+                <td>@m.Nombre</td>
+                <td>@m.Apellido</td>
+                <td>@m.IdEspecialidadNavigation?.NombreEspecialidad</td>
+                <td>@m.Dui</td>
+                <td>@m.CorreoElectronico</td>
+                <td>
+                    <form asp-action="EliminarMedico" asp-controller="Admin" asp-route-id="@m.Id" method="post" onsubmit="return confirm('¿Eliminar este médico?');">
+                        <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Pacientes -->
+<h4>Pacientes</h4>
+<table class="table table-bordered table-striped mb-5">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>DUI</th>
+            <th>Fecha Nac.</th>
+            <th>Correo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model.Pacientes)
+        {
+            <tr>
+                <td>@p.Id</td>
+                <td>@p.Nombre</td>
+                <td>@p.Apellido</td>
+                <td>@p.Dui</td>
+                <td>@p.FechaNacimiento.ToString("dd/MM/yyyy")</td>
+                <td>@p.CorreoElectronico</td>
+                <td>
+                    <form asp-action="EliminarPaciente" asp-controller="Admin" asp-route-id="@p.Id" method="post" onsubmit="return confirm('¿Eliminar este paciente?');">
+                        <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
