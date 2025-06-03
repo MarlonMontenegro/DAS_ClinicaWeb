@@ -41,6 +41,7 @@ namespace ClinicaWeb.Controllers
         {
             if (ModelState.IsValid)
             {
+                ViewBag.Rol = "Recepcionista";
                 _context.Citas.Add(cita);
                 _context.SaveChanges();
                 return RedirectToAction("Dashboard", "Home");

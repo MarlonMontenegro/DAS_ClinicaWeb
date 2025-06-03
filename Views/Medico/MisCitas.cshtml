@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ClinicaWeb.Models.Cita>
+
+@{
+    ViewData["Title"] = "Mis Citas";
+    var rol = ViewBag.Rol as string; 
+}
+
+<h2 class="mb-4">Agenda de Citas</h2>
+
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No tienes citas programadas.</div>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Paciente</th>
+            <th>Fecha y Hora</th>
+            <th>Motivo</th>
+            <th>Estado</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var cita in Model)
+        {
+            <tr>
+                <td>@cita.IdCita</td>
+                <td>@cita.IdPacienteNavigation?.Nombre @cita.IdPacienteNavigation?.Apellido</td>
+                <td>@cita.FechaHora.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@cita.MotivoConsulta</td>
+                <td>@cita.Estado</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+<a href="/Account/Dashboard?rol=@rol" class="btn btn-secondary mb-3"><i class="bi bi-arrow-left"></i> Atrás</a>

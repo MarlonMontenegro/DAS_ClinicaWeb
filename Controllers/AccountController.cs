@@ -1,4 +1,5 @@
 ﻿using ClinicaWeb.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,6 +34,19 @@ namespace ClinicaWeb.Controllers
 
             if (usuario != null)
             {
+                HttpContext.Session.SetInt32("IdUsuario", usuario.IdUsuario);
+
+                
+                if (usuario.Rol == "Medico")
+                {
+                    int? idMedico = _context.UsuarioMedicos
+                        .Where(um => um.IdUsuario == usuario.IdUsuario)
+                        .Select(um => um.IdMedico)
+                        .FirstOrDefault();
+
+                    if (idMedico != null)
+                        HttpContext.Session.SetInt32("IdMedico", idMedico.Value);
+                }
                 return RedirectToAction("Dashboard", new { rol = usuario.Rol });
             }
 

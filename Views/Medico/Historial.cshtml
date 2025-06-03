@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ClinicaWeb.Models.HistorialMedico>
+
+@{
+    ViewData["Title"] = "Historial Clínico";
+    var rol = ViewBag.Rol as string;
+}
+
+<h2 class="mb-4">Historial de Diagnósticos y Notas Clínicas</h2>
+
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No hay registros clínicos asociados a tus pacientes.</div>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Paciente</th>
+            <th>Fecha</th>
+            <th>Tipo / Diagnóstico</th>
+            <th>Descripción / Notas</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var h in Model)
+        {
+            <tr>
+                <td>@h.Id</td>
+                <td>@h.IdPacienteNavigation?.Nombre @h.IdPacienteNavigation?.Apellido</td>
+                <td>@(h.FechaRegistro?.ToString("dd/MM/yyyy") ?? "-")</td>
+                <td>@h.Tipo</td>
+                <td>@h.Descripcion</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+<a href="/Account/Dashboard?rol=@rol" class="btn btn-secondary mb-3"><i class="bi bi-arrow-left"></i> Atrás</a>
